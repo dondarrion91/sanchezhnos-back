@@ -1,0 +1,42 @@
+version: "3.3"
+services:
+    api:
+        env_file:
+            - .env
+        build:
+            context: .
+            dockerfile: Dockerfile
+        restart: always
+        ports:
+            - "3000:3000"
+        environment:
+            NODE_ENV: development
+            PORT: 3000
+            DB_USERNAME: julian
+            DB_PASSWORD: password
+            DB_DATABASE: db
+            DB_HOSTNAME: db
+        container_name: "api"
+        depends_on:
+            - "db"
+        volumes:
+            - .:/usr/src/app
+            - /usr/src/app/node_modules
+
+    db:
+        image: mysql:5.7
+        container_name: "db"
+        restart: always
+        environment:
+            MYSQL_DATABASE: "db"
+            MYSQL_USER: "julian"
+            MYSQL_PASSWORD: "password"
+            MYSQL_ROOT_PASSWORD: "password"
+        ports:
+            - "3307:3306"
+        expose:
+            - "3306"
+        volumes:
+            - my-db:/var/lib/mysql
+volumes:
+    my-db:
