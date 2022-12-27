@@ -1,4 +1,4 @@
-## Instrucciones para levantar el proyecto
+### Instrucciones para levantar el proyecto
 
 ### Clonar repo
 
