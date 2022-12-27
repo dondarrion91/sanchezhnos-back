@@ -10,14 +10,10 @@ app.use(cookieParser());
 app.use(express.json());
 app.use(cors());
 
-const userRouter = require("./user");
-const authRouter = require("./auth");
 const filesRouter = require("./files");
 
 router = Object.assign(
     router,
-    userRouter(router),
-    authRouter(router),
     filesRouter(router)
 );
 
